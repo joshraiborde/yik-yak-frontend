@@ -1,19 +1,30 @@
 const postForm = document.getElementById("post-form")
 const postInput = document.getElementById("post-input")
 const postList = document.getElementById("post-list")
+const postURL = `http://localhost:3000/posts`
 
 postForm.addEventListener("submit", submitPost)
 
 // fetch request
 function submitPost(){
     event.preventDefault()
+    const configObj = {
+        method: "POST", 
+        headers: {
+            "Content-type": "application/json", 
+            "Accept": "application/json"
+        }, 
+        body: JSON.stringify({
+            content: postInput.value
+        })
+    }
+    fetch(postURL, configObj)
+
+    renderPost()
 
 }
 
 // render post to the dom
-// tried moving line 10 thru line 25 from the function submitPost(), into function renderPost(), but the form stopped working
-// going to keep the code in function renderPost(), hopefully there's a fix for it.
-
 function renderPost(){
     const li = document.createElement('li')
     
