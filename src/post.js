@@ -44,7 +44,7 @@ class Post {
         const commentList = document.createElement('ul')
         this.comments.forEach(comment => {
             let commentObj = new Comment(comment)
-            console.log(commentObj)
+            
             commentObj.renderComment(commentList)
         })
     
